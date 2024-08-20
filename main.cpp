@@ -162,21 +162,17 @@ void checkGameStatus() {
 void playerTurn() {
     printGrid();
     std::cout << "Choose action (move [n, e, s, w], search, or hide): ";
-    char action;
+    std::string action;
     std::cin >> action;
 
-    switch (action) {
-        case 'n': case 'e': case 's': case 'w':
-            movePlayer(action);
-            break;
-        case 'search':
-            searchSurroundings();
-            break;
-        case 'hide':
-            hide();
-            break;
-        default:
-            std::cout << "Invalid action." << std::endl;
+    if (action == "n" || action == "e" || action == "s" || action == "w") {
+        movePlayer(action[0]);
+    } else if (action == "search") {
+        searchSurroundings();
+    } else if (action == "hide") {
+        hide();
+    } else {
+        std::cout << "Invalid action." << std::endl;
     }
 
     moveEnemies();
